@@ -24,6 +24,15 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
 
+models:
+  - name: models/emp_dbt
+    +pre-hook: 
+      - CREATE TABLE IF NOT EXISTS audit ( model STRING, state STRING, time TIMESTAMP)
+      - INSERT INTO audit (model, state, time) VALUES ('{{ this.name }}', 'pre-hook', CURRENT_TIMESTAMP())
+    +post-hook: 
+      - INSERT INTO audit (model, state, time) VALUES ('{{ this.name }}', 'post-hook', CURRENT_TIMESTAMP())
+
+
 
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
@@ -36,3 +45,4 @@ models:
     # Applies to all files under models/example/
     example:
       materialized: view
+
