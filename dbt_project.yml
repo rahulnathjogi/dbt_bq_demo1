@@ -24,7 +24,9 @@ clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
   
-  
+on-run-start: DROP TABLE IF EXISTS  skilled-display-380813.dbt_demo_bq.audit_started ; DROP TABLE IF EXISTS  skilled-display-380813.dbt_demo_bq.audit_ended
+
+
 # Configuring models
 # Full documentation: https://docs.getdbt.com/docs/configuring-models
 
