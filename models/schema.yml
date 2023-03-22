@@ -33,3 +33,33 @@ models:
         tests:
           - accepted_values:
               values: ['placed', 'shipped', 'completed', 'return_pending', 'returned']
+
+sources:
+  - name: emp_source
+    database: skilled-display-380813  # Tell dbt to look for the source in the "raw" database
+    schema: dbt_demo_bq
+    tables:
+      - name: emp
+        columns:
+          - name: EMPLOYEE_ID           #contain unique & not_null values (INTEGER)
+            tests:
+              - unique
+              - not_null
+          - name: DEPARTMENT_ID         #contain duplicate with not_null values (INTEGER)
+            tests:
+              - unique
+              - not_null
+          - name: MANAGER_ID          #contain duplicate & null values (STRING)
+            tests:
+              - unique
+              - not_null
+  - name: country_codes_sources
+    database: skilled-display-380813  # Tell dbt to look for the source in the "raw" database
+    schema: dbt_demo_bq
+    tables:
+      - name: country_codes
+        columns:
+          - name: country_code           #contain unique & not_null values (string)
+            tests:
+              - unique
+              - not_null
