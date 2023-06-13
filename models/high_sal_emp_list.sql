@@ -1,4 +1,4 @@
-{{ config(materialized='view') }}
+{{ config(materialized='table') }}
 
 with final as (
     select *
@@ -8,7 +8,7 @@ with final as (
 
 select 
 EMPLOYEE_ID,
-FIRST_NAME || " " || LAST_NAME
+concat(FIRST_NAME, ' ', LAST_NAME) as full_name
 from final
 
 
