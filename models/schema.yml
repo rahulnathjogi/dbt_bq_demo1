@@ -63,3 +63,10 @@ sources:
             tests:
               - unique
               - not_null
+
+  # - name: less_salary
+  #   columns:
+  #         - name: EMPLOYEE_ID           
+  #         - name: FIRST_NAME
+  #         - name: LAST_NAME           
+  #         - name: DEPARTMENT_ID
