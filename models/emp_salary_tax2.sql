@@ -1,11 +1,11 @@
 {{ config(materialized='view') }}
 
 with final as (
-    select tax_amount , high_low_salary
+    select *
     from {{ ref('emp_salary_tax') }}
 )
 
-select *
+select tax_amount , high_low_salary
 from final
 
 
